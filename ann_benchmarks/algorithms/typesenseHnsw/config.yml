@@ -1,0 +1,27 @@
+float:
+  any:
+    - base_args: ["@metric"]
+      constructor: typesenseHnsw
+      disabled: false
+      docker_tag: ann-benchmarks-typesenseHnsw
+      module: ann_benchmarks.algorithms.typesenseHnsw
+      name: typesenseHnsw
+      run_groups:
+        R-32:
+          arg_groups: [{ M: 32}]
+          args: {}
+          query_args: [[]]
+        R-32-DeleteReindex:
+          arg_groups: [{ M: 32 }]
+          args: {}
+          query_args:
+            [
+              [
+                { start: 0.0, end: 0.2, deleteAndReindex: true },
+                { start: 0.2, end: 0.4, deleteAndReindex: true },
+                { start: 0.4, end: 0.6, deleteAndReindex: true },
+                { start: 0.6, end: 0.8, deleteAndReindex: true },
+                { start: 0.8, end: 1.0, deleteAndReindex: true },
+                { start: 0.0, end: 0.2, deleteAndReindex: true },
+              ],
+            ]
