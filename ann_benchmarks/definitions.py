@@ -127,14 +127,14 @@ def _substitute_variables(arg: Any, vs: Dict[str, Any]) -> Any:
         return arg
 
 
-def get_config_files(base_dir: str = "ann_benchmarks/algorithms") -> List[str]:
+def get_config_files(base_dir: str = "../benchmark_algorithms/") -> List[str]:
     """Get config files for all algorithms."""
     config_files = glob.glob(os.path.join(base_dir, "*", "config.yml"))
     return list(
         set(config_files) - {os.path.join(base_dir, "base", "config.yml")}
     )
 
-def load_configs(point_type: str, base_dir: str = "ann_benchmarks/algorithms") -> Dict[str, Any]:
+def load_configs(point_type: str, base_dir: str = "../benchmark_algorithms/") -> Dict[str, Any]:
     """Load algorithm configurations for a given point_type."""
     config_files = get_config_files(base_dir=base_dir)
     configs = {}
@@ -149,7 +149,7 @@ def load_configs(point_type: str, base_dir: str = "ann_benchmarks/algorithms") -
                 print(f"Error loading YAML from {config_file}: {e}")
     return configs
 
-def _get_definitions(base_dir: str = "ann_benchmarks/algorithms") -> List[Dict[str, Any]]:
+def _get_definitions(base_dir: str = "../benchmark_algorithms/") -> List[Dict[str, Any]]:
     """Load algorithm configurations."""
     config_files = get_config_files(base_dir=base_dir)
     configs = []
@@ -162,7 +162,7 @@ def _get_definitions(base_dir: str = "ann_benchmarks/algorithms") -> List[Dict[s
                 print(f"Error loading YAML from {config_file}: {e}")
     return configs
 
-def _get_algorithm_definitions(point_type: str, distance_metric: str, base_dir: str = "ann_benchmarks/algorithms") -> Dict[str, Dict[str, Any]]:
+def _get_algorithm_definitions(point_type: str, distance_metric: str, base_dir: str = "../benchmark_algorithms/") -> Dict[str, Dict[str, Any]]:
     """Get algorithm definitions for a specific point type and distance metric.
 
     A specific algorithm folder can have multiple algorithm definitions for a given point type and
@@ -206,13 +206,13 @@ def _get_algorithm_definitions(point_type: str, distance_metric: str, base_dir: 
 
     return definitions
 
-def list_algorithms(base_dir: str = "ann_benchmarks/algorithms") -> None:
+def list_algorithms(base_dir: str = "../benchmark_algorithms/") -> None:
     """
     Output (to stdout), a list of all algorithms, with their supported point types and metrics.
 
     Args:
         base_dir (str, optional): The base directory where the algorithms are stored.
-                                  Defaults to "ann_benchmarks/algorithms".
+                                  Defaults to "../benchmark_algorithms/".
     """
     all_configs = _get_definitions(base_dir)
     data = {}
@@ -359,7 +359,7 @@ def get_definitions(
     point_type: str = "float",
     distance_metric: str = "euclidean",
     count: int = 10,
-    base_dir: str = "ann_benchmarks/algorithms"
+    base_dir: str = "../benchmark_algorithms/"
 ) -> List[Definition]:
     algorithm_definitions = _get_algorithm_definitions(point_type=point_type,
                                                        distance_metric=distance_metric,
